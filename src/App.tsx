@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  Button,
+  Flex,
+  FlexItem,
+  Provider,
+  Segment
+} from "@fluentui/react-northstar";
+import { useTeams } from "msteams-react-base-component";
 
-function App() {
+
+
+const App = () => {
+
+  const [{ theme }] = useTeams();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider theme={theme}>
+      <Flex column fill gap="gap.small">
+        <Flex>
+          <FlexItem push>
+            <Segment content="用户名" color="blue"></Segment>
+          </FlexItem>
+        </Flex>
+
+        <Segment content="第一行文字." color="red" />
+        <Segment inverted content="第二行文字." color="red" />
+        <Button content="按钮" primary></Button>
+      </Flex>
+    </Provider>
   );
-}
+};
+
 
 export default App;
